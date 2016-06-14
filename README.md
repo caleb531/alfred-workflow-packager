@@ -12,15 +12,8 @@ warned!
 
 ## Setup
 
-To install the utility, please clone the repository, `cd` into the root project
-directory, and run `setup.sh`:
+You can install the utility via `pip`:
 
 ```
-git clone https://github.com/caleb531/alfred-workflow-packager.git
-cd alfred-workflow-packager/
-./setup.sh
+pip install git+https://github.com/caleb531/alfred-workflow-packager.git
 ```
-
-Please note that the setup script symlinks the utility's main script to
-`/usr/local/bin`, so you should probably clone the repository to a directory
-where you can keep it (lest the symlinks break).

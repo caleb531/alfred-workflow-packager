@@ -4,7 +4,7 @@
 import argparse
 import json
 
-import awp.packager
+import packager
 
 
 # Parse arguments given via command-line interface
@@ -34,7 +34,7 @@ def main():
     cli_args = parse_cli_args()
     config = get_utility_config(cli_args.config_path)
 
-    awp.packager.package_workflow(
+    packager.package_workflow(
         config,
         version=cli_args.version,
         export=cli_args.export)

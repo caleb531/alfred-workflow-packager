@@ -1,18 +1,22 @@
-# Alfred Workflow Packager
+#!/usr/bin/env python
+# coding=utf-8
 
 from __future__ import print_function
 import argparse
-import biplist
 import distutils.dir_util as distutils
 import filecmp
 import hashlib
-import glob
 import json
+import glob
 import plistlib
 import os
 import os.path
 import shutil
+import sys
 from zipfile import ZipFile, ZIP_DEFLATED
+
+import biplist
+import jsonschema
 
 
 # Retrieve correct path to directory containing Alfred's user preferences
@@ -190,33 +194,10 @@ def export_workflow(workflow_path, archive_path):
         zip_workflow_dirs(workflow_path, zip_file)
 
 
-# Parse arguments given via command-line interface
-def parse_cli_args():
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        'config_path',
-        help='the path to the utility configuration for this project')
-    parser.add_argument(
-        '--export', action='store_true',
-        help='exports the installed workflow to the local project directory')
-    parser.add_argument(
-        '--version',
-        help='the new version number to use for the workflow')
-    return parser.parse_args()
-
-
-# Locate and parse the configuration for the utility
-def get_utility_config(config_path):
-    with open(config_path, 'r') as config_file:
-        return json.load(config_file)
-
-
 # Package installed workflow by copying resources from project, updating
 # README, and optionally exporting workflow
-def package_workflow(config_path, version, export):
+def package_workflow(config, version, export):
 
-    config = get_utility_config(config_path)
     workflow_path, info = get_installed_workflow(
         config['alfred_version'], config['workflow_bundle_id'])
 
@@ -234,13 +215,51 @@ def package_workflow(config_path, version, export):
             info['version']))
 
 
+# Parse arguments given via command-line interface
+def parse_cli_args():
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        'config_path',
+        help='the path to the utility configuration for this project')
+    parser.add_argument(
+        '--validate', action='store_true',
+        help='validates the utility configuration file for this project')
+    parser.add_argument(
+        '--export', action='store_true',
+        help='exports the installed workflow to the local project directory')
+    parser.add_argument(
+        '--version',
+        help='the new version number to use for the workflow')
+    return parser.parse_args()
+
+
+# Locate and parse the configuration for the utility
+def get_utility_config(config_path):
+    with open(config_path, 'r') as config_file:
+        return json.load(config_file)
+
+
+# Validates the given utility configuration JSON against the schema
+def validate_config(config):
+
+    schema_path = os.path.join(sys.path[0], 'config-schema.json')
+    with open(schema_path, 'r') as schema_file:
+        jsonschema.validate(config, json.load(schema_file))
+
+
 def main():
 
     cli_args = parse_cli_args()
-    package_workflow(
-        cli_args.config_path,
-        version=cli_args.version,
-        export=cli_args.export)
+    config = get_utility_config(cli_args.config_path)
+
+    if cli_args.validate:
+        validate_config(config)
+    else:
+        package_workflow(
+            config,
+            version=cli_args.version,
+            export=cli_args.export)
 
 
 if __name__ == '__main__':

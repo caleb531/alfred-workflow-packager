@@ -20,3 +20,7 @@ git clone https://github.com/caleb531/alfred-workflow-packager.git
 cd alfred-workflow-packager/
 ./setup.sh
 ```
+
+Please note that the setup script symlinks the utility's main script to
+`/usr/local/bin`, so you should probably clone the repository to a directory
+where you can keep it (lest the symlinks break).

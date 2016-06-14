@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "The utility configuration for a particular project",
+  "type": "object",
+  "properties": {
+    "alfred_version": {
+      "description": "The version of Alfred to use when packaging the workflow",
+      "type": "integer",
+      "minimum": 2
+    },
+    "exported_workflow": {
+      "description": "The name of the exported Alfred workflow file",
+      "type": "string",
+      "pattern": "^(.*?)\\.alfredworkflow$"
+    },
+    "readme": {
+      "description": "The path to the README file to include in the workflow",
+      "type": "string"
+    },
+    "workflow_bundle_id": {
+      "description": "The workflow's unique bundle ID",
+      "type": "string"
+    },
+    "workflow_resources": {
+      "description": "A list of file patterns to include in the packaged workflow",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["alfred_version", "exported_workflow", "workflow_bundle_id", "workflow_resources"],
+  "additionalProperties": false
+}

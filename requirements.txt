@@ -1,3 +1,8 @@
 biplist==1.0.1
+flake8==2.5.5
 functools32==3.2.3.post2
 jsonschema==2.5.1
+mccabe==0.4.0
+pep8==1.7.0
+pep8-naming==0.3.3
+pyflakes==1.0.0

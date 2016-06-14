@@ -13,14 +13,17 @@ setup(
     license='MIT',
     keywords='alfred workflow package export',
     packages=['awp'],
+    package_data={
+        'awp': ['data/config-schema.json']
+    },
     install_requires=[
         'biplist >= 1, < 2',
         'jsonschema >= 2, < 3'
     ],
     entry_points={
         'console_scripts': [
-            'alfred-workflow-packager=awp.packager:main',
-            'workflow-packager=awp.packager:main'
+            'alfred-workflow-packager=awp.main:main',
+            'workflow-packager=awp.main:main'
         ]
     }
 )

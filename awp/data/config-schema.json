@@ -11,7 +11,7 @@
     "exported_workflow": {
       "description": "The name of the exported Alfred workflow file",
       "type": "string",
-      "pattern": "^(.*?)\\.alfredworkflow$"
+      "pattern": "^(.*?)\\.alfred3?workflow$"
     },
     "readme": {
       "description": "The path to the README file to include in the workflow",

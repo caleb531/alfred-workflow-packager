@@ -3,8 +3,9 @@
 
 import argparse
 import json
-import awp.packager
-import awp.validator
+
+import packager
+import validator
 
 
 # Parse arguments given via command-line interface
@@ -38,9 +39,9 @@ def main():
     config = get_utility_config(cli_args.config_path)
 
     if cli_args.validate:
-        awp.validator.validate_config(config)
+        validator.validate_config(config)
     else:
-        awp.packager.package_workflow(
+        packager.package_workflow(
             config,
             version=cli_args.version,
             export=cli_args.export)

@@ -15,6 +15,16 @@ from zipfile import ZipFile, ZIP_DEFLATED
 import biplist
 
 
+# Create parent directories for the given path if they don't exist
+def create_parent_dirs(path):
+    parent_path = os.path.dirname(path)
+    if parent_path:
+        try:
+            os.makedirs(parent_path)
+        except OSError:
+            pass
+
+
 # Retrieve the name of Alfred's core preferences file
 def get_core_prefs_name(alfred_version):
     if alfred_version == 3:
@@ -127,23 +137,12 @@ def copy_resource(resource_path, dest_resource_path):
         print('Updated {}'.format(resource_path))
 
 
-# Create parent directories in the installed workflow for the given resource
-def create_resource_dirs(resource_patt, workflow_path):
-    resource_dir = os.path.dirname(resource_patt)
-    if resource_dir:
-        workflow_resource_dir = os.path.join(workflow_path, resource_dir)
-        try:
-            os.makedirs(workflow_resource_dir)
-        except OSError:
-            pass
-
-
 # Copy all package resources to installed workflow
 def copy_pkg_resources(workflow_path, workflow_resources):
 
     for resource_patt in workflow_resources:
         for resource_path in glob.iglob(resource_patt):
-            create_resource_dirs(resource_path, workflow_path)
+            create_parent_dirs(os.path.join(workflow_path, resource_path))
             dest_resource_path = os.path.join(workflow_path, resource_path)
             copy_resource(resource_path, dest_resource_path)
 
@@ -192,6 +191,7 @@ def export_workflow(workflow_path, archive_path):
 
     # Create new Alfred workflow archive in project directory
     # Overwrite any existing archive
+    create_parent_dirs(archive_path)
     with ZipFile(archive_path, 'w', compression=ZIP_DEFLATED) as zip_file:
         zip_workflow_dirs(workflow_path, zip_file)
 

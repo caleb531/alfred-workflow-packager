@@ -8,7 +8,7 @@
       "type": "integer",
       "minimum": 2
     },
-    "exported_workflow": {
+    "export_path": {
       "description": "The name of the exported Alfred workflow file",
       "type": "string",
       "pattern": "^(.*?)\\.alfred3?workflow$"
@@ -17,11 +17,11 @@
       "description": "The path to the README file to include in the workflow",
       "type": "string"
     },
-    "workflow_bundle_id": {
+    "bundle_id": {
       "description": "The workflow's unique bundle ID",
       "type": "string"
     },
-    "workflow_resources": {
+    "resources": {
       "description": "A list of file patterns to include in the packaged workflow",
       "type": "array",
       "items": {
@@ -29,6 +29,6 @@
       }
     }
   },
-  "required": ["alfred_version", "exported_workflow", "workflow_bundle_id", "workflow_resources"],
+  "required": ["alfred_version", "export_path", "bundle_id", "resources"],
   "additionalProperties": false
 }

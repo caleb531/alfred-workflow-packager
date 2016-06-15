@@ -201,9 +201,9 @@ def export_workflow(workflow_path, archive_path):
 def package_workflow(config, version, export):
 
     workflow_path, info = get_installed_workflow(
-        config['alfred_version'], config['workflow_bundle_id'])
+        config['alfred_version'], config['bundle_id'])
 
-    copy_pkg_resources(workflow_path, config['workflow_resources'])
+    copy_pkg_resources(workflow_path, config['resources'])
     if 'readme' in config:
         update_workflow_readme(info, config['readme'])
     update_workflow_version(info, version)
@@ -212,6 +212,6 @@ def package_workflow(config, version, export):
     if export:
         project_path = os.getcwd()
         export_workflow(workflow_path, os.path.join(
-            project_path, config['exported_workflow']))
+            project_path, config['export_path']))
         print('Exported installed workflow successfully (v{})'.format(
             info['version']))

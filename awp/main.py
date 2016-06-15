@@ -3,6 +3,7 @@
 
 import argparse
 import json
+
 import awp.packager
 import awp.validator
 

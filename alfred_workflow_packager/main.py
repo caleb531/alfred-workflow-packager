@@ -13,9 +13,6 @@ def parse_cli_args():
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        'config_path',
-        help='the path to the utility configuration for this project')
-    parser.add_argument(
         '--validate', action='store_true',
         help='validates the utility configuration file for this project')
     parser.add_argument(
@@ -28,15 +25,15 @@ def parse_cli_args():
 
 
 # Locate and parse the configuration for the utility
-def get_utility_config(config_path):
-    with open(config_path, 'r') as config_file:
+def get_utility_config():
+    with open('packager.json', 'r') as config_file:
         return json.load(config_file)
 
 
 def main():
 
     cli_args = parse_cli_args()
-    config = get_utility_config(cli_args.config_path)
+    config = get_utility_config()
 
     if cli_args.validate:
         validator.validate_config(config)

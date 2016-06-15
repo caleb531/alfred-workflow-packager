@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='alfred-workflow-packager',
-    version='0.9',
+    version='0.11.0',
     description='A CLI utility for packaging and exporting Alfred workflows',
     url='https://github.com/caleb531/alfred-workflow-packager',
     author='Caleb Evans',

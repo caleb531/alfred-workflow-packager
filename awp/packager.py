@@ -15,14 +15,20 @@ from zipfile import ZipFile, ZIP_DEFLATED
 import biplist
 
 
+# Retrieve the name of Alfred's core preferences file
+def get_core_prefs_name(alfred_version):
+    if alfred_version == 3:
+        return 'com.runningwithcrayons.Alfred-Preferences-3.plist'
+    else:
+        return 'com.runningwithcrayons.Alfred-Preferences.plist'
+
+
 # Retrieve correct path to directory containing Alfred's user preferences
 def get_user_prefs_dir(alfred_version):
 
     library_dir = os.path.join(os.path.expanduser('~'), 'Library')
     core_prefs = biplist.readPlist(os.path.join(
-        library_dir, 'Preferences',
-        'com.runningwithcrayons.Alfred-Preferences-{}.plist'.format(
-            alfred_version)))
+        library_dir, 'Preferences', get_core_prefs_name(alfred_version)))
 
     # If user is syncing their preferences using a syncing service
     if 'syncfolder' in core_prefs:

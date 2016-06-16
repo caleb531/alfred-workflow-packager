@@ -23,7 +23,8 @@ setup(
     entry_points={
         'console_scripts': [
             'alfred-workflow-packager=awp.main:main',
-            'workflow-packager=awp.main:main'
+            'workflow-packager=awp.main:main',
+            'awp=awp.main:main'
         ]
     }
 )

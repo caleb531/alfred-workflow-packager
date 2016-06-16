@@ -30,7 +30,7 @@ your project; this file configures AWP for your specific project.
 ```json
 {
   "alfred_version": 3,
-  "export_path": "Fruit.alfredworkflow",
+  "export_file": "Fruit.alfredworkflow",
   "bundle_id": "com.yourname.fruit",
   "readme": "README.txt",
   "resources": [
@@ -47,7 +47,7 @@ your project; this file configures AWP for your specific project.
 
 The version of Alfred this workflow supports (accepted values are `2` and `3`).
 
-##### export_path
+##### export_file
 
 The path of the exported workflow (relative to your project directory).
 

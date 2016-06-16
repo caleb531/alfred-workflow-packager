@@ -8,8 +8,8 @@
       "type": "integer",
       "minimum": 2
     },
-    "export_path": {
-      "description": "The name of the exported Alfred workflow file",
+    "export_file": {
+      "description": "The path to the exported Alfred workflow file",
       "type": "string",
       "pattern": "^(.*?)\\.alfred3?workflow$"
     },

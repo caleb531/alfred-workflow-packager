@@ -117,3 +117,46 @@ Once you've finished writing the `packager.json` file for your project, you
 should validate it by running `awp --validate` from the root directory of your
 project. If you are missing any options or if any of the option values are in
 the wrong format, the utility will output those respective error messages.
+
+### 3. Run utility
+
+Now that your project has a valid `packager.json` file, you can run the utility
+via the `awp` command:
+
+```
+awp
+```
+
+Running `awp` will always do a few things:
+
+1. Copy those project resources listed in `packager.json` to the installed
+workflow (in their respective locations)
+
+2. Update the installed workflow's README with the contents of the README file
+listed in `packager.json` (if one is listed)
+
+#### Setting the workflow version
+
+Passing the `--version` option to `awp` allows you to set the version of the
+installed workflow directly. I highly recommend using [semantic
+versioning](http://semver.org/) to version your workflow releases.
+
+```
+awp --version 1.2.0
+```
+
+#### Exporting the workflow
+
+When you're pleased with your work and you're ready to publish a new release,
+you can export the installed workflow to your project directory by passing the
+`--export` flag to `awp`.
+
+```
+awp --export
+```
+
+Note that you can set the version and export the workflow simultaneously:
+
+```
+awp --version 1.2.0 --export
+```

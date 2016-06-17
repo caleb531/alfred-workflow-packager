@@ -113,7 +113,7 @@ field in your workflow is populated with the contents of this file.
 
 ### 2. Validate configuration file
 
-Once you've finished writing the `packager.json` file for your project, you can
-validate it by running `awp --validate` from the root directory of your project.
-If you are missing any options or if any of your values are in the wrong format,
-the utility will output those respective error messages.
+Once you've finished writing the `packager.json` file for your project, you
+should validate it by running `awp --validate` from the root directory of your
+project. If you are missing any options or if any of the option values are in
+the wrong format, the utility will output those respective error messages.

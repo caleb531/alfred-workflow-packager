@@ -68,9 +68,9 @@ filenames are preserved when copying.
 ```
 - icon.png
 - fruit
-    - apple.json
-    - banana.json
-    - orange.json
+    - apple.py
+    - banana.py
+    - orange.sh
 ```
 
 *Installed workflow (before running utility):*
@@ -96,9 +96,9 @@ filenames are preserved when copying.
 - icon.png
 - special_file.json
 - fruit
-    - apple.json
-    - banana.json
-    - orange.json
+    - apple.py
+    - banana.py
+    - orange.sh
 ```
 
 Note that files and folders already present in the installed workflow are *not*

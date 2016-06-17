@@ -41,7 +41,7 @@ your project; this file configures AWP for your specific project.
 }
 ```
 
-#### Required fields
+#### Required options
 
 ##### alfred_version
 
@@ -103,7 +103,7 @@ filenames are preserved when copying.
 Note that files and folders already present in the installed workflow are *not*
 touched if they are not in the *resources* list.
 
-#### Optional fields
+#### Optional options
 
 ##### readme
 

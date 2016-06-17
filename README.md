@@ -56,11 +56,6 @@ The path of the exported workflow (relative to your project directory).
 The unique bundle ID of your workflow. You must have one set in the installed
 workflow, or AWP will not be able to find your workflow when packaging.
 
-##### readme
-
-The path to the README file to use for this workflow; the *About this Workflow*
-field in your workflow is populated with the contents of this file.
-
 ##### resources
 
 A list of zero or more files/folder patterns representing files or folders to
@@ -107,3 +102,10 @@ filenames are preserved when copying.
 
 Note that files and folders already present in the installed workflow are *not*
 touched if they are not in the *resources* list.
+
+#### Optional fields
+
+##### readme
+
+The path to the README file to use for this workflow; the *About this Workflow*
+field in your workflow is populated with the contents of this file.

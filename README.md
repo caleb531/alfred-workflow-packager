@@ -22,8 +22,9 @@ pip install git+https://github.com/caleb531/alfred-workflow-packager.git
 
 ### Configuring AWP
 
-Once you've installed AWP, you must create a `packager.json` file in the root of
-your project; this file configures AWP for your specific project.
+Once you've installed AWP, you must configure it for every project where you
+wish to use it. To do so, create a `packager.json` file in the root directory of
+your project; this file configures AWP for that particular project.
 
 #### Example
 

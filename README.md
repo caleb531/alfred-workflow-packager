@@ -69,8 +69,8 @@ filenames are preserved when copying.
 - icon.png
 - fruit
     - apple.py
-    - banana.py
-    - orange.sh
+    - banana.applescript
+    - orange.php
 ```
 
 *Installed workflow (before running utility):*
@@ -97,8 +97,8 @@ filenames are preserved when copying.
 - special_file.json
 - fruit
     - apple.py
-    - banana.py
-    - orange.sh
+    - banana.applescript
+    - orange.php
 ```
 
 Note that files and folders already present in the installed workflow are *not*
@@ -159,4 +159,44 @@ Note that you can set the version and export the workflow simultaneously:
 
 ```
 awp --version 1.2.0 --export
+```
+
+### 4. Configure workflow objects
+
+The last important step is to update any script objects in your workflow (*i.e.*
+objects of type **Script Filter**, **Run Script**, *etc.*) to reference the
+files copied to the installed workflow directory.
+
+You should set the *Language* to `/bin/bash` and use the appropriate shell
+command to call your script. Use `"$@"` if your input is passed as argv, or
+`"{query}"` if your input is passed as {query}.
+
+#### Python
+
+```
+/usr/bin/python -m fruit.apple "$@"
+```
+
+```
+/usr/bin/python -m fruit.apple "{query}"
+```
+
+#### AppleScript
+
+```
+/usr/bin/osascript fruit/banana.applescript "$@"
+```
+
+```
+/usr/bin/osascript fruit/banana.applescript "{query}"
+```
+
+#### PHP
+
+```
+/usr/bin/php fruit/orange.php "$@"
+```
+
+```
+/usr/bin/php fruit/orange.php "{query}"
 ```

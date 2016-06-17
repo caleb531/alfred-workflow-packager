@@ -110,3 +110,10 @@ touched if they are not in the *resources* list.
 
 The path to the README file to use for this workflow; the *About this Workflow*
 field in your workflow is populated with the contents of this file.
+
+### Validate AWP configuration
+
+Once you've finished writing the `packager.json` file for your project, you can
+validate it by running `awp --validate` from the root directory of your project.
+If you are missing any options or if any of your values are in the wrong format,
+the utility will output those respective error messages.

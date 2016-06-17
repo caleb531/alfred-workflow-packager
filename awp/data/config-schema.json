@@ -29,6 +29,6 @@
       }
     }
   },
-  "required": ["alfred_version", "export_path", "bundle_id", "resources"],
+  "required": ["alfred_version", "export_file", "bundle_id", "resources"],
   "additionalProperties": false
 }

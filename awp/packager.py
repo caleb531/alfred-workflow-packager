@@ -25,37 +25,28 @@ def create_parent_dirs(path):
             pass
 
 
-# Retrieve the name of Alfred's core preferences file
-def get_core_prefs_name(alfred_version):
-    if alfred_version == 3:
-        return 'com.runningwithcrayons.Alfred-Preferences-3.plist'
-    else:
-        return 'com.runningwithcrayons.Alfred-Preferences.plist'
-
-
 # Retrieve correct path to directory containing Alfred's user preferences
-def get_user_prefs_dir(alfred_version):
+def get_user_prefs_dir():
 
     library_dir = os.path.join(os.path.expanduser('~'), 'Library')
     core_prefs = biplist.readPlist(os.path.join(
-        library_dir, 'Preferences', get_core_prefs_name(alfred_version)))
+        library_dir, 'Preferences',
+        'com.runningwithcrayons.Alfred-Preferences-3.plist'))
 
     # If user is syncing their preferences using a syncing service
     if 'syncfolder' in core_prefs:
         return os.path.expanduser(core_prefs['syncfolder'])
     else:
         return os.path.join(
-            library_dir, 'Application Support',
-            'Alfred {}'.format(alfred_version))
+            library_dir, 'Application Support', 'Alfred 3')
 
 
 # Retrieve path to and info.plist object for installed workflow
-def get_installed_workflow(alfred_version, workflow_bundle_id):
+def get_installed_workflow(workflow_bundle_id):
 
     # Retrieve list of the directories for all installed workflows
     workflow_dirs = glob.iglob(os.path.join(
-        get_user_prefs_dir(alfred_version), 'Alfred.alfredpreferences',
-        'workflows', '*'))
+        get_user_prefs_dir(), 'Alfred.alfredpreferences', 'workflows', '*'))
 
     # Find workflow whose bundle ID matches this workflow's
     for workflow_dir in workflow_dirs:
@@ -200,8 +191,7 @@ def export_workflow(workflow_path, archive_path):
 # README, and optionally exporting workflow
 def package_workflow(config, version, export):
 
-    workflow_path, info = get_installed_workflow(
-        config['alfred_version'], config['bundle_id'])
+    workflow_path, info = get_installed_workflow(config['bundle_id'])
 
     copy_pkg_resources(workflow_path, config['resources'])
     if 'readme' in config:

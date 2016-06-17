@@ -5,7 +5,7 @@
 
 Alfred Workflow Packager is a command-line utility which makes the process of
 packaging and exporting an Alfred workflow incredibly quick and easy. The
-utility supports both Alfred 2 and Alfred 3.
+utility supports Alfred 3.
 
 This utility is in beta, so anything can break at any time. Consider yourself
 warned!
@@ -30,7 +30,6 @@ your project; this file configures AWP for that particular project.
 
 ```json
 {
-  "alfred_version": 3,
   "export_file": "Fruit.alfredworkflow",
   "bundle_id": "com.yourname.fruit",
   "readme": "README.txt",
@@ -43,10 +42,6 @@ your project; this file configures AWP for that particular project.
 ```
 
 #### Required options
-
-##### alfred_version
-
-The version of Alfred this workflow supports (accepted values are `2` and `3`).
 
 ##### export_file
 

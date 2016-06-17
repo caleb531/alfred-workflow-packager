@@ -3,11 +3,6 @@
   "description": "The utility configuration for a particular project",
   "type": "object",
   "properties": {
-    "alfred_version": {
-      "description": "The version of Alfred to use when packaging the workflow",
-      "type": "integer",
-      "minimum": 2
-    },
     "export_file": {
       "description": "The path to the exported Alfred workflow file",
       "type": "string",
@@ -29,6 +24,6 @@
       }
     }
   },
-  "required": ["alfred_version", "export_file", "bundle_id", "resources"],
+  "required": ["export_file", "bundle_id", "resources"],
   "additionalProperties": false
 }

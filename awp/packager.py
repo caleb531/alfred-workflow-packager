@@ -125,7 +125,7 @@ def copy_resource(resource_path, dest_resource_path):
             distutils.copy_tree(resource_path, dest_resource_path)
         except distutils.DistutilsFileError:
             shutil.copy(resource_path, dest_resource_path)
-        print('Updated {}'.format(resource_path))
+        print('Copied {}'.format(resource_path))
 
 
 # Copy all package resources to installed workflow

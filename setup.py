@@ -11,9 +11,7 @@ def get_long_description():
         import pypandoc
         return pypandoc.convert('README.md', 'rst')
     except:
-        # Otherwise, default to using Markdown README
-        with open('README.md', 'r') as readme_file:
-            return readme_file.read()
+        return None
 
 
 setup(

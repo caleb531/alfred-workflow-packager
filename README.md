@@ -7,15 +7,12 @@ Alfred Workflow Packager is a command-line utility which makes the process of
 packaging and exporting an [Alfred](https://www.alfredapp.com/) workflow
 incredibly quick and easy. The utility supports Alfred 3 only.
 
-This utility is in beta, so anything can break at any time. Consider yourself
-warned!
-
 ## Setup
 
 You can install the utility via `pip`, either globally or within a virtualenv:
 
 ```
-pip install git+https://github.com/caleb531/alfred-workflow-packager.git
+pip install alfred-workflow-packager
 ```
 
 ## Usage
@@ -41,7 +38,7 @@ your project; this file configures AWP for that particular project.
 }
 ```
 
-#### Required options
+#### Required settings
 
 ##### export_file
 
@@ -99,7 +96,7 @@ filenames are preserved when copying.
 Note that files and folders already present in the installed workflow are *not*
 touched if they are not in the *resources* list.
 
-#### Optional options
+#### Optional settings
 
 ##### readme
 
@@ -110,7 +107,7 @@ field in your workflow is populated with the contents of this file.
 
 Once you've finished writing the `packager.json` file for your project, you
 should validate it by running `awp --validate` from the root directory of your
-project. If you are missing any options or if any of the option values are in
+project. If you are missing any settings or if any of the setting values are in
 the wrong format, the utility will output those respective error messages.
 
 ### 3. Run utility

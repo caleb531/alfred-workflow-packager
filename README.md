@@ -15,7 +15,7 @@ warned!
 You can install the utility via `pip`, either globally or within a virtualenv:
 
 ```
-pip install git+https://github.com/caleb531/alfred-workflow-packager.git
+pip install alfred-workflow-packager
 ```
 
 ## Usage

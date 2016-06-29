@@ -7,9 +7,6 @@ Alfred Workflow Packager is a command-line utility which makes the process of
 packaging and exporting an [Alfred](https://www.alfredapp.com/) workflow
 incredibly quick and easy. The utility supports Alfred 3 only.
 
-This utility is in beta, so anything can break at any time. Consider yourself
-warned!
-
 ## Setup
 
 You can install the utility via `pip`, either globally or within a virtualenv:

@@ -153,6 +153,14 @@ Note that you can set the version and export the workflow simultaneously:
 awp --version 1.2.0 --export
 ```
 
+**New in AWP v1.1.0:** If you wish to temporarily export the workflow to a
+different file (different from `export_file` in `packager.json`), you can
+pass an optional path to `--export`:
+
+```
+awp --version 1.3.0-beta.1 --export ~/Desktop/fruit-beta.alfredworkflow
+```
+
 ### 4. Configure workflow objects
 
 The last important step is to update any script objects in your workflow (*i.e.*

@@ -189,7 +189,7 @@ def export_workflow(workflow_path, archive_path):
 
 # Package installed workflow by copying resources from project, updating
 # README, and optionally exporting workflow
-def package_workflow(config, version, export):
+def package_workflow(config, version, export_file):
 
     workflow_path, info = get_installed_workflow(config['bundle_id'])
 
@@ -199,9 +199,12 @@ def package_workflow(config, version, export):
     update_workflow_version(info, version)
     plistlib.writePlist(info, os.path.join(workflow_path, 'info.plist'))
 
-    if export:
+    if export_file is '':
+        export_file = config['export_file']
+
+    if export_file:
         project_path = os.getcwd()
         export_workflow(workflow_path, os.path.join(
-            project_path, config['export_file']))
+            project_path, export_file))
         print('Exported installed workflow successfully (v{})'.format(
             info['version']))

@@ -16,7 +16,7 @@ def parse_cli_args():
         '--validate', action='store_true',
         help='validates the utility configuration file for this project')
     parser.add_argument(
-        '--export', action='store_true',
+        '--export', nargs='?', const='', default=None,
         help='exports the installed workflow to the local project directory')
     parser.add_argument(
         '--version',
@@ -41,7 +41,7 @@ def main():
         awp.packager.package_workflow(
             config,
             version=cli_args.version,
-            export=cli_args.export)
+            export_file=cli_args.export)
 
 
 if __name__ == '__main__':

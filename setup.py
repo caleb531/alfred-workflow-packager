@@ -16,7 +16,7 @@ def get_long_description():
 
 setup(
     name='alfred-workflow-packager',
-    version='1.0.1',
+    version='1.1.0',
     description='A CLI utility for packaging and exporting Alfred workflows',
     long_description=get_long_description(),
     url='https://github.com/caleb531/alfred-workflow-packager',

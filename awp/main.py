@@ -16,10 +16,10 @@ def parse_cli_args():
         '--validate', action='store_true',
         help='validates the utility configuration file for this project')
     parser.add_argument(
-        '--export', nargs='?', const='', default=None,
+        '--export', '-e', nargs='?', const='', default=None,
         help='exports the installed workflow to the local project directory')
     parser.add_argument(
-        '--version',
+        '--version', '-v',
         help='the new version number to use for the workflow')
     return parser.parse_args()
 

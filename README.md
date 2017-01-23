@@ -129,28 +129,36 @@ listed in `packager.json` (if one is listed)
 
 #### Setting the workflow version
 
-Passing the `--version` option to `awp` allows you to set the version of the
-installed workflow directly. I highly recommend using [semantic
+Passing the `--version` option (also `-v`) to `awp` allows you to set the
+version of the installed workflow directly. I highly recommend using [semantic
 versioning](http://semver.org/) to version your workflow releases.
 
 ```
 awp --version 1.2.0
 ```
 
+```
+awp -v 1.2.0
+```
+
 #### Exporting the workflow
 
 When you're pleased with your work and you're ready to publish a new release,
 you can export the installed workflow to your project directory by passing the
-`--export` flag to `awp`.
+`--export` flag (or `-e`) to `awp`.
 
 ```
 awp --export
 ```
 
+```
+awp -e
+```
+
 Note that you can set the version and export the workflow simultaneously:
 
 ```
-awp --version 1.2.0 --export
+awp -v 1.2.0 -e
 ```
 
 **New in AWP v1.1.0:** If you wish to temporarily export the workflow to a
@@ -158,7 +166,7 @@ different file (different from `export_file` in `packager.json`), you can
 pass an optional path to `--export`:
 
 ```
-awp --version 1.3.0-beta.1 --export ~/Desktop/fruit-beta.alfredworkflow
+awp -v 1.3.0-beta.1 -e ~/Desktop/fruit-beta.alfredworkflow
 ```
 
 ### 4. Configure workflow objects

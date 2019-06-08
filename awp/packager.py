@@ -31,14 +31,14 @@ def get_user_prefs_dir():
     library_dir = os.path.join(os.path.expanduser('~'), 'Library')
     core_prefs = biplist.readPlist(os.path.join(
         library_dir, 'Preferences',
-        'com.runningwithcrayons.Alfred-Preferences-3.plist'))
+        'com.runningwithcrayons.Alfred-Preferences.plist'))
 
     # If user is syncing their preferences using a syncing service
     if 'syncfolder' in core_prefs:
         return os.path.expanduser(core_prefs['syncfolder'])
     else:
         return os.path.join(
-            library_dir, 'Application Support', 'Alfred 3')
+            library_dir, 'Application Support', 'Alfred')
 
 
 # Retrieve path to and info.plist object for installed workflow

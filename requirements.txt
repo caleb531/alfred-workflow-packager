@@ -1,5 +1,5 @@
 biplist==1.0.1
-bleach==3.1.2
+bleach==3.1.4
 certifi==2018.11.29
 chardet==3.0.4
 configparser==3.7.1

@@ -11,8 +11,6 @@ import os.path
 import shutil
 from zipfile import ZipFile, ZIP_DEFLATED
 
-import biplist
-
 
 # Create parent directories for the given path if they don't exist
 def create_parent_dirs(path):
@@ -28,7 +26,7 @@ def create_parent_dirs(path):
 def get_user_prefs_dir():
 
     library_dir = os.path.join(os.path.expanduser('~'), 'Library')
-    core_prefs = biplist.readPlist(os.path.join(
+    core_prefs = plistlib.readPlist(os.path.join(
         library_dir, 'Preferences',
         'com.runningwithcrayons.Alfred-Preferences.plist'))
 

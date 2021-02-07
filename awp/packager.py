@@ -213,7 +213,7 @@ def package_workflow(config, version, export_file):
     else:
         plistlib.writePlist(info, plist_path)
 
-    if not export_file:
+    if export_file == '':
         export_file = config['export_file']
 
     if export_file:

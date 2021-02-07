@@ -12,7 +12,7 @@ def get_long_description():
 
 setup(
     name='alfred-workflow-packager',
-    version='1.2.0',
+    version='1.2.1',
     description='A CLI utility for packaging and exporting Alfred workflows',
     long_description=get_long_description(),
     long_description_content_type='text/markdown',

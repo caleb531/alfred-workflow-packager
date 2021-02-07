@@ -29,9 +29,14 @@ def create_parent_dirs(path):
 def get_user_prefs_dir():
 
     library_dir = os.path.join(os.path.expanduser('~'), 'Library')
-    core_prefs = biplist.readPlist(os.path.join(
-        library_dir, 'Preferences',
-        'com.runningwithcrayons.Alfred-Preferences.plist'))
+    try:
+        core_prefs = biplist.readPlist(os.path.join(
+            library_dir, 'Preferences',
+            'com.runningwithcrayons.Alfred-Preferences-3.plist'))
+    except IOError:
+        core_prefs = biplist.readPlist(os.path.join(
+            library_dir, 'Preferences',
+            'com.runningwithcrayons.Alfred-Preferences.plist'))
 
     # If user is syncing their preferences using a syncing service
     if 'syncfolder' in core_prefs:
@@ -51,7 +56,11 @@ def get_installed_workflow(workflow_bundle_id):
     # Find workflow whose bundle ID matches this workflow's
     for workflow_dir in workflow_dirs:
         info_path = os.path.join(workflow_dir, 'info.plist')
-        info = plistlib.readPlist(info_path)
+        try:
+            with open(info_path, 'r') as info_file:
+                info = plistlib.load(info_file)
+        except AttributeError:
+            info = plistlib.readPlist(info_path)
         if info['bundleid'] == workflow_bundle_id:
             return workflow_dir, info
 

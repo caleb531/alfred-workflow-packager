@@ -56,10 +56,10 @@ def get_installed_workflow(workflow_bundle_id):
     # Find workflow whose bundle ID matches this workflow's
     for workflow_dir in workflow_dirs:
         info_path = os.path.join(workflow_dir, 'info.plist')
-        try:
-            with open(info_path, 'r') as info_file:
+        if hasattr(plistlib, 'load'):
+            with open(info_path, 'rb') as info_file:
                 info = plistlib.load(info_file)
-        except AttributeError:
+        else:
             info = plistlib.readPlist(info_path)
         if info['bundleid'] == workflow_bundle_id:
             return workflow_dir, info
@@ -206,7 +206,12 @@ def package_workflow(config, version, export_file):
     if 'readme' in config:
         update_workflow_readme(info, config['readme'])
     update_workflow_version(info, version)
-    plistlib.writePlist(info, os.path.join(workflow_path, 'info.plist'))
+    plist_path = os.path.join(workflow_path, 'info.plist')
+    if hasattr(plistlib, 'dump'):
+        with open(plist_path, 'rb+') as plist_file:
+            plistlib.dump(info, plist_file)
+    else:
+        plistlib.writePlist(info, plist_path)
 
     if not export_file:
         export_file = config['export_file']

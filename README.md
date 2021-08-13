@@ -132,6 +132,10 @@ awp --force
 awp -f
 ```
 
+If a file's permissions have changed but the contents remain the same, you must
+use `--force` / `-f`. Automatic permission-checking is being considered for a
+future Alfred Workflow Packager release, though!
+
 #### Setting the workflow version
 
 Passing the `--version` option (also `-v`) to `awp` allows you to set the

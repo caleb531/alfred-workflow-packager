@@ -127,9 +127,9 @@ def resources_are_equal(resource_path, dest_resource_path):
 
 
 # Copy package resource to corresponding destination path
-def copy_resource(resource_path, dest_resource_path):
+def copy_resource(resource_path, dest_resource_path, force=False):
 
-    if not resources_are_equal(resource_path, dest_resource_path):
+    if force or not resources_are_equal(resource_path, dest_resource_path):
         try:
             distutils.copy_tree(resource_path, dest_resource_path)
         except distutils.DistutilsFileError:
@@ -138,13 +138,13 @@ def copy_resource(resource_path, dest_resource_path):
 
 
 # Copy all package resources to installed workflow
-def copy_pkg_resources(workflow_path, workflow_resources):
+def copy_pkg_resources(workflow_path, workflow_resources, force=False):
 
     for resource_patt in workflow_resources:
         for resource_path in glob.iglob(resource_patt):
             create_parent_dirs(os.path.join(workflow_path, resource_path))
             dest_resource_path = os.path.join(workflow_path, resource_path)
-            copy_resource(resource_path, dest_resource_path)
+            copy_resource(resource_path, dest_resource_path, force=force)
 
 
 # Update the workflow README with the current project README
@@ -198,11 +198,11 @@ def export_workflow(workflow_path, archive_path):
 
 # Package installed workflow by copying resources from project, updating
 # README, and optionally exporting workflow
-def package_workflow(config, version, export_file):
+def package_workflow(config, version, export_file, force=False):
 
     workflow_path, info = get_installed_workflow(config['bundle_id'])
 
-    copy_pkg_resources(workflow_path, config['resources'])
+    copy_pkg_resources(workflow_path, config['resources'], force=force)
     if 'readme' in config:
         update_workflow_readme(info, config['readme'])
     update_workflow_version(info, version)

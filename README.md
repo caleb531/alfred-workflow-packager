@@ -122,7 +122,15 @@ awp
 Running `awp` will always do a few things:
 
 1. Copy those project resources listed in `packager.json` to the installed
-workflow (in their respective locations)
+workflow (in their respective locations); pass `--force` or `-f` to force the copying of all files and directories
+
+```
+awp --force
+```
+
+```
+awp -f
+```
 
 2. Update the installed workflow's README with the contents of the README file
 listed in `packager.json` (if one is listed)

@@ -12,8 +12,6 @@ import os.path
 import shutil
 from zipfile import ZipFile, ZIP_DEFLATED
 
-import biplist
-
 
 # Create parent directories for the given path if they don't exist
 def create_parent_dirs(path):
@@ -25,16 +23,23 @@ def create_parent_dirs(path):
             pass
 
 
+# Read a .plist file from the given path and return a dictionary representing
+# the contents
+def read_plist_from_path(plist_path):
+    with open(plist_path, 'rb') as plist_file:
+        return plistlib.load(plist_file)
+
+
 # Retrieve correct path to directory containing Alfred's user preferences
 def get_user_prefs_dir():
 
     library_dir = os.path.join(os.path.expanduser('~'), 'Library')
     try:
-        core_prefs = biplist.readPlist(os.path.join(
+        core_prefs = read_plist_from_path(os.path.join(
             library_dir, 'Preferences',
             'com.runningwithcrayons.Alfred-Preferences-3.plist'))
     except IOError:
-        core_prefs = biplist.readPlist(os.path.join(
+        core_prefs = read_plist_from_path(os.path.join(
             library_dir, 'Preferences',
             'com.runningwithcrayons.Alfred-Preferences.plist'))
 
@@ -56,11 +61,7 @@ def get_installed_workflow(workflow_bundle_id):
     # Find workflow whose bundle ID matches this workflow's
     for workflow_dir in workflow_dirs:
         info_path = os.path.join(workflow_dir, 'info.plist')
-        if hasattr(plistlib, 'load'):
-            with open(info_path, 'rb') as info_file:
-                info = plistlib.load(info_file)
-        else:
-            info = plistlib.readPlist(info_path)
+        info = read_plist_from_path(info_path)
         if info['bundleid'] == workflow_bundle_id:
             return workflow_dir, info
 

@@ -103,17 +103,9 @@ touched if they are not in the *resources* list.
 The path to the README file to use for this workflow; the *About this Workflow*
 field in your workflow is populated with the contents of this file.
 
-### 2. Validate configuration file
+### 2. Run utility
 
-Once you've finished writing the `packager.json` file for your project, you
-should validate it by running `awp --validate` from the root directory of your
-project. If you are missing any settings or if any of the setting values are in
-the wrong format, the utility will output those respective error messages.
-
-### 3. Run utility
-
-Now that your project has a valid `packager.json` file, you can run the utility
-via the `awp` command:
+You can run the utility via the `awp` command:
 
 ```
 awp

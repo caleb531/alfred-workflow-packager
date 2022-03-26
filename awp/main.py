@@ -4,6 +4,8 @@
 import argparse
 import json
 
+import jsonschema
+
 import awp.packager
 import awp.validator
 
@@ -12,9 +14,6 @@ import awp.validator
 def parse_cli_args():
 
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '--validate', action='store_true',
-        help='validates the utility configuration file for this project')
     parser.add_argument(
         '--force', '-f', action='store_true',
         help='forces the copying of all files and directories')
@@ -38,14 +37,15 @@ def main():
     cli_args = parse_cli_args()
     config = get_utility_config()
 
-    if cli_args.validate:
+    try:
         awp.validator.validate_config(config)
-    else:
         awp.packager.package_workflow(
             config,
             version=cli_args.version,
             export_file=cli_args.export,
             force=cli_args.force)
+    except jsonschema.exceptions.ValidationError as error:
+        print(error.message)
 
 
 if __name__ == '__main__':

@@ -45,7 +45,7 @@ def main():
             export_file=cli_args.export,
             force=cli_args.force)
     except jsonschema.exceptions.ValidationError as error:
-        print(error.message)
+        print('awp (from packager.json): {}'.format(error.message))
 
 
 if __name__ == '__main__':

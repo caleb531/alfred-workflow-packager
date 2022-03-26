@@ -208,11 +208,8 @@ def package_workflow(config, version, export_file, force=False):
         update_workflow_readme(info, config['readme'])
     update_workflow_version(info, version)
     plist_path = os.path.join(workflow_path, 'info.plist')
-    if hasattr(plistlib, 'dump'):
-        with open(plist_path, 'rb+') as plist_file:
-            plistlib.dump(info, plist_file)
-    else:
-        plistlib.writePlist(info, plist_path)
+    with open(plist_path, 'rb+') as plist_file:
+        plistlib.dump(info, plist_file)
 
     if export_file == '':
         export_file = config['export_file']

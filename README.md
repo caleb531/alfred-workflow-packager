@@ -180,11 +180,11 @@ command to call your script. Use `"$@"` if your input is passed as argv, or
 #### Python
 
 ```
-/usr/bin/python -m fruit.apple "$@"
+/usr/bin/python3 -m fruit.apple "$@"
 ```
 
 ```
-/usr/bin/python -m fruit.apple "{query}"
+/usr/bin/python3 -m fruit.apple "{query}"
 ```
 
 #### AppleScript

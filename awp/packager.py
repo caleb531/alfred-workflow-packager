@@ -3,6 +3,7 @@
 
 from __future__ import print_function
 import distutils.dir_util as distutils
+import contextlib
 import filecmp
 import hashlib
 import glob
@@ -69,6 +70,17 @@ def get_installed_workflow(workflow_bundle_id):
     raise OSError('Workflow is not installed locally')
 
 
+# Retrieve the octal file permissions for the given file as a base-10 integer
+def get_permissions(file_path):
+    return os.stat(file_path).st_mode
+
+
+# Return True if the permissions of the two files are equal; return False
+# otherwise
+def cmp_permissions(src_file_path, dest_file_path):
+    return get_permissions(src_file_path) == get_permissions(dest_file_path)
+
+
 # Return True if the item counts for the given directories match; otherwise,
 # return False
 def check_dir_item_count_match(dir_path, dest_dir_path, dirs_cmp):
@@ -113,7 +125,8 @@ def dirs_are_equal(dir_path, dest_dir_path):
     return True
 
 
-# Check if resource (file or directory) is equal to destination resource
+# Return True if the resource (file or directory) is equal to the destination
+# resource; return False otherwise
 def resources_are_equal(resource_path, dest_resource_path):
 
     try:
@@ -121,7 +134,11 @@ def resources_are_equal(resource_path, dest_resource_path):
     except OSError:
         # Compare files if they are not directories
         try:
-            return filecmp.cmp(resource_path, dest_resource_path)
+            return (
+                filecmp.cmp(resource_path, dest_resource_path)
+                and
+                cmp_permissions(resource_path, dest_resource_path)
+            )
         except OSError:
             # Resources are not equal if either does not exist
             return False
@@ -134,6 +151,8 @@ def copy_resource(resource_path, dest_resource_path, force=False):
         try:
             distutils.copy_tree(resource_path, dest_resource_path)
         except distutils.DistutilsFileError:
+            with contextlib.suppress(FileNotFoundError):
+                os.remove(dest_resource_path)
             shutil.copy(resource_path, dest_resource_path)
         print('Copied {}'.format(resource_path))
         return True

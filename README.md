@@ -111,10 +111,11 @@ You can run the utility via the `awp` command:
 awp
 ```
 
-Running `awp` will always copy those project resources listed in
-`packager.json` to the installed workflow (in their respective locations). By
-default, only changes files/directories are copied, but you can force the
-copying of all files/directories by passing `--force` / `-f`.
+Running `awp` will copy those project resources listed in `packager.json` to
+the installed workflow (in their respective locations), but only if their
+contents or permissions have changed. If you ever need to ignore this equality
+check, you can force the copying of all files/directories by passing `--force`
+/ `-f`.
 
 ```
 awp --force
@@ -123,10 +124,6 @@ awp --force
 ```
 awp -f
 ```
-
-If a file's permissions have changed but the contents remain the same, you must
-use `--force` / `-f`. Automatic permission-checking is being considered for a
-future Alfred Workflow Packager release, though!
 
 #### Setting the workflow version
 

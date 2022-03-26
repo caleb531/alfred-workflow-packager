@@ -32,8 +32,8 @@ your project; this file configures AWP for that particular project.
   "readme": "README.txt",
   "resources": [
       "icon.png",
-      "dostuff/*.py",
-      "dostuff/data/*.json"
+      "src/*.py",
+      "src/data/*.json"
   ]
 }
 ```

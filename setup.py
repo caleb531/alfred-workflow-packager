@@ -26,7 +26,7 @@ setup(
         'awp': ['data/config-schema.json']
     },
     install_requires=[
-        'jsonschema >= 2, < 3'
+        'jsonschema >= 4, < 5'
     ],
     entry_points={
         'console_scripts': [

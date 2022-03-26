@@ -136,16 +136,27 @@ def copy_resource(resource_path, dest_resource_path, force=False):
         except distutils.DistutilsFileError:
             shutil.copy(resource_path, dest_resource_path)
         print('Copied {}'.format(resource_path))
+        return True
+    else:
+        return False
 
 
 # Copy all package resources to installed workflow
 def copy_pkg_resources(workflow_path, workflow_resources, force=False):
 
+    copied_any = False
     for resource_patt in workflow_resources:
         for resource_path in glob.iglob(resource_patt):
             create_parent_dirs(os.path.join(workflow_path, resource_path))
             dest_resource_path = os.path.join(workflow_path, resource_path)
-            copy_resource(resource_path, dest_resource_path, force=force)
+            copied = copy_resource(
+                resource_path,
+                dest_resource_path,
+                force=force)
+            if copied:
+                copied_any = True
+    if not copied_any:
+        print('Everything up-to-date.')
 
 
 # Update the workflow README with the current project README

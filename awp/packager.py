@@ -156,7 +156,7 @@ def copy_pkg_resources(workflow_path, workflow_resources, force=False):
             if copied:
                 copied_any = True
     if not copied_any:
-        print('Everything up-to-date.')
+        print('Nothing to copy; workflow is already up-to-date')
 
 
 # Update the workflow README with the current project README

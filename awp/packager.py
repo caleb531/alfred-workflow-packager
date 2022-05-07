@@ -177,13 +177,18 @@ def copy_pkg_resources(workflow_path, workflow_resources, force=False):
         print('Nothing to copy; workflow is already up-to-date')
 
 
+# Return a hash/checksum of the given README contents
+def get_readme_hash(readme):
+    return hashlib.sha1(readme.encode('utf-8')).hexdigest()
+
+
 # Update the workflow README with the current project README
 def update_workflow_readme(info, readme_path):
 
-    orig_readme_hash = hashlib.sha1(info['readme']).hexdigest()
+    orig_readme_hash = get_readme_hash(info['readme'])
     with open(readme_path, 'r') as readme_file:
         info['readme'] = readme_file.read()
-    if orig_readme_hash != hashlib.sha1(info['readme']).hexdigest():
+    if orig_readme_hash != get_readme_hash(info['readme']):
         print('Updated workflow README')
 
 

@@ -18,7 +18,7 @@ def parse_cli_args():
         '--force', '-f', action='store_true',
         help='forces the copying of all files and directories')
     parser.add_argument(
-        '--export', '-e', nargs='*', const='', default=[],
+        '--export', '-e', nargs='*', default=[],
         help='exports the installed workflow to the local project directory')
     parser.add_argument(
         '--version', '-v',

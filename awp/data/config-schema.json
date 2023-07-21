@@ -8,6 +8,11 @@
       "type": "string",
       "pattern": "^(.*?)\\.alfred3?workflow$"
     },
+    "export_files": {
+      "description": "The paths to the Alfred workflow files to export",
+      "type": "string",
+      "pattern": "^(.*?)\\.alfred\\d?workflow$"
+    },
     "readme": {
       "description": "The path to the README file to include in the workflow",
       "type": "string"
@@ -24,6 +29,6 @@
       }
     }
   },
-  "required": ["export_file", "bundle_id", "resources"],
+  "required": ["export_files", "bundle_id", "resources"],
   "additionalProperties": false
 }

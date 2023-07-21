@@ -1,0 +1,24 @@
+[project]
+name = "alfred-workflow-packager"
+version = "3.0.0-beta.1"
+description = "A CLI utility for packaging and exporting Alfred workflows"
+authors = [
+    { name = "Caleb Evans", email = "caleb@calebevans.me" }
+]
+license = {file = 'LICENSE.txt'}
+keywords = ["alfred", "workflow", "package", "export"]
+dependencies=[
+    "jsonschema>=4,<5"
+]
+
+[project.scripts]
+awp = "awp.main:main"
+
+[project.urls]
+homepage = "https://github.com/caleb531/alfred-workflow-packager"
+documentation = "https://github.com/caleb531/alfred-workflow-packager#readme"
+repository = "https://github.com/caleb531/alfred-workflow-packager"
+changelog = "https://github.com/caleb531/alfred-workflow-packager/releases"
+
+[build-system]
+requires = ["setuptools", "wheel"]

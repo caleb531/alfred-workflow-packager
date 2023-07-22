@@ -259,5 +259,6 @@ def package_workflow(config, version, export_files, force=False):
         project_path = os.getcwd()
         export_workflow(workflow_path, os.path.join(
             project_path, export_file))
-        print('Exported installed workflow successfully (v{})'.format(
-            info['version']))
+        print('Exported v{version} to {file}'.format(
+            version=info['version'],
+            file=export_file))

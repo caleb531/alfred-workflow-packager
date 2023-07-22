@@ -8,6 +8,7 @@ import jsonschema
 
 import awp.packager
 import awp.validator
+from awp.argparse_extras import constForNargsStar
 
 
 # Parse arguments given via command-line interface
@@ -15,10 +16,15 @@ def parse_cli_args():
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '--force', '-f', action='store_true',
+        '--force', '-f',
+        action='store_true',
         help='forces the copying of all files and directories')
     parser.add_argument(
-        '--export', '-e', nargs='*', default=[],
+        '--export', '-e',
+        nargs='*',
+        action=constForNargsStar,
+        const=[],
+        default=None,
         help='exports the installed workflow to the local project directory')
     parser.add_argument(
         '--version', '-v',

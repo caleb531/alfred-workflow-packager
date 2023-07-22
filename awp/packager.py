@@ -245,7 +245,14 @@ def package_workflow(config, version, export_files, force=False):
     with open(plist_path, 'rb+') as plist_file:
         plistlib.dump(info, plist_file)
 
-    if not export_files:
+    # Do not export anything if --export/-e option is not supplied
+    if export_files is None:
+        return
+
+    # If --export/-e is supplied but without any arguments, default to the
+    # export_files list defined in packager.json (this must match the 'const'
+    # parameter in the argument definition for --export/-e)
+    if export_files == []:
         export_files = config.get('export_files', [])
 
     for export_file in export_files:

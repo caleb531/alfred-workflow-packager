@@ -20,7 +20,7 @@ dependencies=[
 awp = "awp.main:main"
 
 [tool.setuptools.package-data]
-awp = ["awp/data/*.json"]
+awp = ["data/*.json"]
 
 [project.urls]
 homepage = "https://github.com/caleb531/alfred-workflow-packager"

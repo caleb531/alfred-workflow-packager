@@ -107,7 +107,7 @@ field in your workflow is populated with the contents of this file.
 
 You can run the utility via the `awp` command:
 
-```
+```sh
 awp
 ```
 
@@ -117,11 +117,11 @@ contents or permissions have changed. If you ever need to ignore this equality
 check, you can force the copying of all files/directories by passing `--force`
 / `-f`.
 
-```
+```sh
 awp --force
 ```
 
-```
+```sh
 awp -f
 ```
 
@@ -131,11 +131,11 @@ Passing the `--version` option (also `-v`) to `awp` allows you to set the
 version of the installed workflow directly. I highly recommend using [semantic
 versioning](http://semver.org/) to version your workflow releases.
 
-```
+```sh
 awp --version 1.2.0
 ```
 
-```
+```sh
 awp -v 1.2.0
 ```
 
@@ -145,17 +145,17 @@ When you're pleased with your work and you're ready to publish a new release,
 you can export the installed workflow to your project directory by passing the
 `--export` flag (or `-e`) to `awp`.
 
-```
+```sh
 awp --export
 ```
 
-```
+```sh
 awp -e
 ```
 
 Note that you can set the version and export the workflow simultaneously:
 
-```
+```sh
 awp -v 1.2.0 -e
 ```
 
@@ -163,7 +163,7 @@ awp -v 1.2.0 -e
 different file (different from `export_file` in `packager.json`), you can
 pass an optional path to `--export`:
 
-```
+```sh
 awp -v 1.3.0-beta.1 -e ~/Desktop/fruit-beta.alfredworkflow
 ```
 
@@ -179,30 +179,30 @@ command to call your script. Use `"$@"` if your input is passed as argv, or
 
 #### Python
 
-```
+```sh
 /usr/bin/python3 -m fruit.apple "$@"
 ```
 
-```
+```sh
 /usr/bin/python3 -m fruit.apple "{query}"
 ```
 
 #### AppleScript
 
-```
+```sh
 /usr/bin/osascript fruit/banana.applescript "$@"
 ```
 
-```
+```sh
 /usr/bin/osascript fruit/banana.applescript "{query}"
 ```
 
 #### PHP
 
-```
+```sh
 /usr/bin/php fruit/orange.php "$@"
 ```
 
-```
+```sh
 /usr/bin/php fruit/orange.php "{query}"
 ```

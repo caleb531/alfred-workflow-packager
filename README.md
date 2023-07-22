@@ -1,6 +1,6 @@
 # Alfred Workflow Packager
 
-*Copyright 2016-2022 Caleb Evans*  
+*Copyright 2016-2023 Caleb Evans*  
 *Released under the MIT license*
 
 Alfred Workflow Packager is a command-line utility which makes the process of

@@ -27,7 +27,9 @@ your project; this file configures AWP for that particular project.
 
 ```json
 {
-  "export_file": "Fruit.alfredworkflow",
+  "export_files": [
+    "Fruit.alfredworkflow"
+  ],
   "bundle_id": "com.yourname.fruit",
   "readme": "README.txt",
   "resources": [
@@ -40,9 +42,9 @@ your project; this file configures AWP for that particular project.
 
 #### Required settings
 
-##### export_file
+##### export_files
 
-The path of the exported workflow (relative to your project directory).
+The paths of the exported workflows (relative to your project directory).
 
 ##### bundle_id
 
@@ -160,11 +162,11 @@ awp -v 1.2.0 -e
 ```
 
 **New in AWP v1.1.0:** If you wish to temporarily export the workflow to a
-different file (different from `export_file` in `packager.json`), you can
-pass an optional path to `--export`:
+different file (different from `export_files` in `packager.json`), you can
+pass one or more optional paths to `--export`:
 
 ```sh
-awp -v 1.3.0-beta.1 -e ~/Desktop/fruit-beta.alfredworkflow
+awp -v 1.3.0-beta.1 -e ~/Desktop/fruit-beta-alfred-5.alfredworkflow
 ```
 
 ### 4. Configure workflow objects

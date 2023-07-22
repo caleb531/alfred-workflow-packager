@@ -153,7 +153,7 @@ def copy_resource(resource_path, dest_resource_path, force=False):
             with contextlib.suppress(FileNotFoundError):
                 os.remove(dest_resource_path)
             shutil.copy(resource_path, dest_resource_path)
-        print('Copied {}'.format(resource_path))
+        print('Copied {file}'.format(file=resource_path))
         return True
     else:
         return False
@@ -196,7 +196,7 @@ def update_workflow_readme(info, readme_path):
 def update_workflow_version(info, new_version_num):
     if new_version_num:
         info['version'] = new_version_num
-        print('Set version to v{}'.format(new_version_num))
+        print('Set version to v{version}'.format(version=new_version_num))
 
 
 # Write installed workflow subdirectory files to the given zip file

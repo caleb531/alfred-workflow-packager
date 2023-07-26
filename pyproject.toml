@@ -1,6 +1,6 @@
 [project]
 name = "alfred-workflow-packager"
-version = "3.0.0-beta.11"
+version = "3.0.0-beta.12"
 description = "A CLI utility for packaging and exporting Alfred workflows"
 readme = "README.md"
 requires-python = ">=3.9"

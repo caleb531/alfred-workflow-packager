@@ -9,6 +9,7 @@ import plistlib
 import os
 import os.path
 import shutil
+import xml
 from zipfile import ZipFile, ZIP_DEFLATED
 
 
@@ -26,7 +27,17 @@ def create_parent_dirs(path):
 # the contents
 def read_plist_from_path(plist_path):
     with open(plist_path, 'rb') as plist_file:
-        return plistlib.load(plist_file)
+        try:
+            return plistlib.load(plist_file)
+        # For whatever reason, the plist-writing process can sometimes add some
+        # extraneous junk to the end of the file which causes the XML to be
+        # malformed and raises an error; to solve this, we catch that error and
+        # properly parse out the valid XML
+        except xml.parsers.expat.ExpatError:
+            plist_contents = plist_file.read()
+            junk_marker = '</plist>'
+            plist_contents = plist_contents[:plist_contents.index(junk_marker) + junk_marker]
+            return plistlib.loads(plist_contents)
 
 
 # Retrieve correct path to directory containing Alfred's user preferences

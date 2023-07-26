@@ -35,7 +35,7 @@ def read_plist_from_path(plist_path):
         # properly parse out the valid XML
         except xml.parsers.expat.ExpatError:
             plist_contents = plist_file.read()
-            junk_marker = '</plist>'
+            junk_marker = b'</plist>'
             plist_contents = plist_contents[:plist_contents.index(junk_marker) + junk_marker]
             return plistlib.loads(plist_contents)
 

@@ -11,7 +11,7 @@ incredibly quick and easy. The utility supports Alfred 3 and up, on projects run
 
 You can install the utility via `pip3`, either globally or within a virtualenv:
 
-```
+```sh
 pip3 install alfred-workflow-packager
 ```
 

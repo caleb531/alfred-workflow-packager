@@ -5,7 +5,7 @@ description = "A CLI utility for packaging and exporting Alfred workflows"
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [
-    { name = "Caleb Evans", email = "caleb@calebevans.me" }
+    {name = "Caleb Evans", email = "caleb@calebevans.me"}
 ]
 maintainers = [
     {name = 'Caleb Evans', email = 'caleb@calebevans.me'}

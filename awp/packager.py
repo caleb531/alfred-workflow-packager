@@ -55,7 +55,7 @@ def get_user_prefs_dir():
             'com.runningwithcrayons.Alfred-Preferences.plist'))
 
     # If user is syncing their preferences using a syncing service
-    if 'syncfolder' in core_prefs:
+    if core_prefs.get('syncfolder'):
         return os.path.expanduser(core_prefs['syncfolder'])
     else:
         return os.path.join(

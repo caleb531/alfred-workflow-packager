@@ -29,5 +29,5 @@ repository = "https://github.com/caleb531/alfred-workflow-packager"
 changelog = "https://github.com/caleb531/alfred-workflow-packager/releases"
 
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"

@@ -23,6 +23,7 @@ class constForNargsStar(argparse.Action):
     NOTES:
         If `const` is not set, default value (2A) will be None
     """
+
     def __call__(self, parser, namespace, values, option_string=None):
         if option_string:
             setattr(namespace, self.dest, self.const)

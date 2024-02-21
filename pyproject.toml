@@ -31,3 +31,13 @@ changelog = "https://github.com/caleb531/alfred-workflow-packager/releases"
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.flake8]
+# Black compatibility
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [".git", "build", "__pycache__", "*.egg-info", ".virtualenv"]
+
+# Per <https://black.readthedocs.io/en/stable/guides/using_black_with_other_tools.html#profile>
+[tool.isort]
+profile = "black"

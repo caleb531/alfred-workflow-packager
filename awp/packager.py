@@ -2,7 +2,6 @@
 # coding=utf-8
 
 import contextlib
-import distutils.dir_util as distutils
 import filecmp
 import glob
 import os
@@ -169,8 +168,8 @@ def copy_resource(resource_path, dest_resource_path, force=False):
 
     if force or not resources_are_equal(resource_path, dest_resource_path):
         try:
-            distutils.copy_tree(resource_path, dest_resource_path)
-        except distutils.DistutilsFileError:
+            shutil.copy_tree(resource_path, dest_resource_path)
+        except Exception:
             with contextlib.suppress(FileNotFoundError):
                 os.remove(dest_resource_path)
             shutil.copy(resource_path, dest_resource_path)

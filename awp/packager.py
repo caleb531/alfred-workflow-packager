@@ -7,6 +7,7 @@ import glob
 import os
 import os.path
 import plistlib
+import re
 import shutil
 import xml
 from zipfile import ZIP_DEFLATED, ZipFile
@@ -208,8 +209,8 @@ def update_workflow_readme(info, readme_path):
 # Set the workflow version to a new version number if one is given
 def update_workflow_version(info, new_version_num):
     if new_version_num:
-        info["version"] = new_version_num
-        print("Set version to v{version}".format(version=new_version_num))
+        info["version"] = re.sub(r"^v", "", new_version_num)
+        print("Set version to v{version}".format(version=info["version"]))
 
 
 # Write installed workflow subdirectory files to the given zip file

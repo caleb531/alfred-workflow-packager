@@ -45,7 +45,6 @@ def read_plist_from_path(plist_path):
 
 # Retrieve correct path to directory containing Alfred's user preferences
 def get_user_prefs_dir():
-
     library_dir = os.path.join(os.path.expanduser("~"), "Library")
     try:
         core_prefs = read_plist_from_path(
@@ -73,7 +72,6 @@ def get_user_prefs_dir():
 
 # Retrieve path to and info.plist object for installed workflow
 def get_installed_workflow(workflow_bundle_id):
-
     # Retrieve list of the directories for all installed workflows
     workflow_dirs = glob.iglob(
         os.path.join(get_user_prefs_dir(), "Alfred.alfredpreferences", "workflows", "*")
@@ -104,7 +102,6 @@ def cmp_permissions(src_file_path, dest_file_path):
 # Return True if the item counts for the given directories match; otherwise,
 # return False
 def check_dir_item_count_match(dir_path, dest_dir_path, dirs_cmp):
-
     return (
         not dirs_cmp.left_only and not dirs_cmp.right_only and not dirs_cmp.funny_files
     )
@@ -113,7 +110,6 @@ def check_dir_item_count_match(dir_path, dest_dir_path, dirs_cmp):
 # Return True if the contents of all files in the given directories match;
 # otherwise, return False
 def check_dir_file_content_match(dir_path, dest_dir_path, dirs_cmp):
-
     match, mismatch, errors = filecmp.cmpfiles(
         dir_path, dest_dir_path, dirs_cmp.common_files, shallow=False
     )
@@ -123,7 +119,6 @@ def check_dir_file_content_match(dir_path, dest_dir_path, dirs_cmp):
 # Return True if the contents of all subdirectories (found recursively) match;
 # otherwise, return False
 def check_subdir_content_match(dir_path, dest_dir_path, dirs_cmp):
-
     for common_dir in dirs_cmp.common_dirs:
         new_dir_path = os.path.join(dir_path, common_dir)
         new_dest_dir_path = os.path.join(dest_dir_path, common_dir)
@@ -134,7 +129,6 @@ def check_subdir_content_match(dir_path, dest_dir_path, dirs_cmp):
 
 # Recursively check if two directories are exactly equal in terms of content
 def dirs_are_equal(dir_path, dest_dir_path):
-
     dirs_cmp = filecmp.dircmp(dir_path, dest_dir_path)
 
     if not check_dir_item_count_match(dir_path, dest_dir_path, dirs_cmp):
@@ -150,7 +144,6 @@ def dirs_are_equal(dir_path, dest_dir_path):
 # Return True if the resource (file or directory) is equal to the destination
 # resource; return False otherwise
 def resources_are_equal(resource_path, dest_resource_path):
-
     try:
         return dirs_are_equal(resource_path, dest_resource_path)
     except OSError:
@@ -166,7 +159,6 @@ def resources_are_equal(resource_path, dest_resource_path):
 
 # Copy package resource to corresponding destination path
 def copy_resource(resource_path, dest_resource_path, force=False):
-
     if force or not resources_are_equal(resource_path, dest_resource_path):
         try:
             shutil.copy_tree(resource_path, dest_resource_path)
@@ -182,7 +174,6 @@ def copy_resource(resource_path, dest_resource_path, force=False):
 
 # Copy all package resources to installed workflow
 def copy_pkg_resources(workflow_path, workflow_resources, force=False):
-
     copied_any = False
     for resource_patt in workflow_resources:
         for resource_path in glob.iglob(resource_patt):
@@ -197,7 +188,6 @@ def copy_pkg_resources(workflow_path, workflow_resources, force=False):
 
 # Update the workflow README with the current project README
 def update_workflow_readme(info, readme_path):
-
     orig_readme = info["readme"]
     with open(readme_path, "r") as readme_file:
         new_readme = readme_file.read()
@@ -235,7 +225,6 @@ def zip_workflow_dirs(workflow_path, zip_file):
 
 # Export installed workflow to project directory
 def export_workflow(workflow_path, archive_path):
-
     # Create new Alfred workflow archive in project directory
     # Overwrite any existing archive
     create_parent_dirs(archive_path)
@@ -246,7 +235,6 @@ def export_workflow(workflow_path, archive_path):
 # Package installed workflow by copying resources from project, updating
 # README, and optionally exporting workflow
 def package_workflow(config, version, export_files, force=False):
-
     workflow_path, info = get_installed_workflow(config["bundle_id"])
 
     copy_pkg_resources(workflow_path, config["resources"], force=force)

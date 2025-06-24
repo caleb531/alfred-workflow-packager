@@ -13,7 +13,6 @@ from awp.argparse_extras import constForNargsStar
 
 # Parse arguments given via command-line interface
 def parse_cli_args():
-
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--force",
@@ -43,7 +42,6 @@ def get_utility_config():
 
 
 def main():
-
     cli_args = parse_cli_args()
     config = get_utility_config()
 

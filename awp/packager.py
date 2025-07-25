@@ -80,9 +80,13 @@ def get_installed_workflow(workflow_bundle_id):
     # Find workflow whose bundle ID matches this workflow's
     for workflow_dir in workflow_dirs:
         info_path = os.path.join(workflow_dir, "info.plist")
-        info = read_plist_from_path(info_path)
-        if info["bundleid"] == workflow_bundle_id:
-            return workflow_dir, info
+        try:
+            info = read_plist_from_path(info_path)
+            if info["bundleid"] == workflow_bundle_id:
+                return workflow_dir, info
+        except (IOError, FileNotFoundError, KeyError):
+            # Skip workflows with missing or invalid info.plist files
+            continue
 
     # Assume workflow is not installed at this point
     raise OSError("Workflow is not installed locally")
